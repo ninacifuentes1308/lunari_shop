@@ -1,0 +1,121 @@
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+.encabezado {
+    background: linear-gradient(135deg, #F089E9, #B889C9, #76DFE8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+body {
+    background: linear-gradient(to bottom,#B889C9,#76DFE8, #F089E9);
+}
+nav ul {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}nav a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.5rem;
+}
+nav a:hover {
+    color: #6E4835;
+}
+header {
+    background: #FFFFFF;
+    display: flex;
+    padding: 20px, 60px;
+
+}
+.logoytitulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.textobanner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 5rem;
+    background: #B98FC2;
+    padding: 4rem;
+    border-radius: 8px solid #EB88DD;
+}   
+#inicio {
+    padding: 2rem;
+}
+#historia {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+.sobre_mi {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: rgba(255, 202, 231, 0.8);
+    border-radius: 20px;
+    margin: 2rem;
+    max-width: 800px;
+}
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000;
+    font-family: 'Arial', sans-serif;
+}
+h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #000000;
+    background: #F089E9;
+    border: 2px solid white;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+
+}
+button:hover {
+    background: #CCC6F7;
+
+}
+.imagen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+   }
+.imagen img {
+    object-fit: contain;
+    animation: flotar 2.5s ease-in-out infinite;
+}
+@keyframes flotar {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
