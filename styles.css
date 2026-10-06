@@ -136,6 +136,52 @@ button:hover {
     box-shadow: 0 12px 25px rgba(184, 21, 162, 0.2);
     transition: all 0.3s ease;
 }
+#reseñas{
+    padding: 80px 20px;
+    text-align: center;   
+    
+}
+.ventana {
+    overflow: hidden;
+    width: 100%;
+    margin-top: 40px;
+}
+.riel {
+    display: flex;
+    gap:30px;
+    width: max-content; /*no se rompan en dos filas*/
+    animation: scroll 80s linear infinite;
+}
+.reseña {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    width: 280px;
+    flex-shrink: 0;
+    border-radius: 16px;
+}
+.arriba {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.ft_perfil {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.ft_perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ventana:hover .riel{
+    animation-play-state: paused;
+}
 @keyframes flotar {
     0% {
         transform: translateY(0);
@@ -154,4 +200,8 @@ button:hover {
     50% {
         transform: translateY(-6px) /*Para controlar que no suba mucho*/
     }
+}
+@keyframes scroll {
+    from {transform: translateX(0)}
+    to {transform: translateX(calc(-50% - 15px));}
 }
