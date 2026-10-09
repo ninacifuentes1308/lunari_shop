@@ -182,6 +182,27 @@ button:hover {
 .ventana:hover .riel{
     animation-play-state: paused;
 }
+#preguntas {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 10px;
+}
+button.pregunta {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+}
+.respuesta {
+    display: none;
+    padding: 10px 15px;
+}
+.respuesta.activa {
+    display: block;
+}
 @keyframes flotar {
     0% {
         transform: translateY(0);
