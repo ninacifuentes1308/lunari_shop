@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Carrito</title>
+</head>
+    <body>
+        <header class="encabezado">
+        <div class="logoytitulo">
+            <img src="./assets/img/lunarishoplogo.png" alt="logo de Lunari Shop" width="120px" height="120px">
+            <h1> Lunari Shop </h1>
+        </div>
+        <nav>
+            <ul> 
+                <li><a href="index.html"> Inicio</a></li>
+                <li><a href="principal.html"> Tienda</a></li>
+                <li><a href="#contacto"> Contactanos</a></li>
+            </ul>
+        </nav>
+        </header>
+    <div class="carrito">
+        <h1>Tu carrito</h1>
+        <div id="lista_carrito"></div>
+        <h2 id="total">Total: $0</h2>
+        <a href="principal.html">Volver a la tienda</a>
+    </div>
+    <script>
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        let lista = document.getElementById("lista_carrito");
+        let total_txt = document.getElementById("total");
+
+        if (carrito.length === 0) {
+            lista.innerHTML = "<p>Tu carrito está vacío </p>";
+        } else {
+            let total = 0;
+            lista.innerHTML = "";
+            carrito.forEach(p => {
+                let varianteBonita = p.varianteNombre || "";
+                if (!varianteBonita) {
+                    varianteBonita = p.variante === "unico" ? "" : p.variante.replace(/_/g, " ");
+                }
+                total += p.precio * p.cantidad;
+                lista.innerHTML += `
+                <div class="prod_carrito">
+                    <img src="${p.img}" alt="${p.nombre}">
+                    <div class="prod_info">
+                        <h4>${p.nombre}</h4>
+                        <p style="text-transform:capitalize">${varianteBonita} - Cant: ${p.cantidad}</p>
+                    </div>
+                    <strong>$${(p.precio*p.cantidad).toFixed(2)}</strong> 
+                </div>`;
+            });
+            total_txt.textContent = `total: $${total}`;
+        }
+    </script>
+    <footer id="contacto">
+        <div class="footer_redes">
+            <p>Contactanos mediante nuestras redes sociales:</p>
+            <div class="img_footer">
+            <a href="mailto:lunari.shop13@gmail.com"><img src="./assets/img/correo.svg" alt="gmail" width="50px" height="50px"></a>
+            <a href="https://www.instagram.com/lunari_shop.ec?cplk=NzN2cWhoaWFrZ2Fk" target="_blank"><img src="./assets/img/insta.svg" alt="instagram" width="50px" height="50px"></a>
+            <a href="https://wa.me/593999810503?text=Hola%20quiero%20información" target="_blank"><img src="./assets/img/whatsapp.svg" alt="WhatsApp" width="50px" height="50px"></a>
+            </div>
+        </div>
+        <div class="footer_pagos">
+            <p>Métodos de pago:</p>
+            <div class="img_footer">
+            <img src="./assets/img/efectivo.svg" alt="pagos en efectivo" width="50px" height="50px">
+            <img src="./assets/img/tarjeta.svg" alt="pagos con tarjeta" width="50px" height="50px">
+            </div>
+        </div>  
+    </footer>
+    </body>
+</head>

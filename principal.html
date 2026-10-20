@@ -4,5 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
-    <title>Lunari Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Lunari Shop: catálogo</title>
 </head>
+<body>
+    <header class="encabezado">
+        <div class="logoytitulo">
+            <img src="./assets/img/lunarishoplogo.png" alt="logo de Lunari Shop" width="120px" height="120px">
+            <h1> Lunari Shop </h1>
+        </div>
+        <nav>
+            <ul> 
+                <li><a href="index.html"> Inicio</a></li>
+                <li><a href="principal.html"> Tienda</a></li>
+                <li><a href="#contacto"> Contactanos</a></li>
+                <li><a href="carrito.html"><img src="./assets/img/carrito.png" alt="carrito" width="30px" height="30px"><span id="contador_carrito">0</span> </a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="mini_banner">
+        <div class="txt_minibanner">
+            <h2>Nuestro Catálogo</h2>
+            <h1>Elige tu favorito, todo hecho con amor.</h1>
+        </div>
+    </section>
+    <section id="catalogo">
+        <div class="producto" data-id="peluche_bt21" data-nombre="Peluche BT21" data-img="./assets/img/bts_peluches.jpeg">
+            <img src="./assets/img/bts_peluches.jpeg" alt="peluche del grupo de kpop bts">
+            <div class="info_producto">
+                <h3 class="titulo">Peluche BT21 a elección</h3> 
+                <p class="descripcion">Peluche suave de 20 cm BT21 (Boyband BTS)</p>
+                <p class="precio">$12.00</p>
+                <laber>Elige tu personaje </label>
+                <select class="opcion">
+                    <option value="chimmy" data-precio="12">CHIMMY</option>
+                    <option value="koya" data-precio="12">KOYA</option>
+                    <option value="mang" data-precio="12">MANG</option>
+                    <option value="rj" data-precio="12">RJ</option>
+                    <option value="shooky" data-precio="12">SHOOKY</option>
+                    <option value="tata" data-precio="12">TATA</option>
+                    <option value="set7" data-precio="84">SET 7 ($84.00)</option>
+                </select>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="producto" data-id="llavero_guitarra" data-nombre="Llavero guitarra eléctrica con dije de estrella" data-precio="3.75" data-img="./assets/img/llavero_guitarra.jpeg">
+            <img src="./assets/img/llavero_guitarra.jpeg" alt="Llavero forma de guitarra eléctrica">
+            <div class="info_producto">
+                <h3 class="titulo">Llavero guitarra eléctrica con dije de estrella</h3> 
+                <p class="descripcion">Llavero metálico de guitarra con dije estrella</p>
+                <p class="precio">$3.75</p>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="producto" data-id="gafas_y2k" data-nombre="Gafas de sol rectangulares Y2K" data-img="./assets/img/gafas.jpeg">
+            <img src="./assets/img/gafas.jpeg" alt="Gafas">
+            <div class="info_producto">
+                <h3 class="titulo">Gafas de sol rectangulares Y2K</h3> 
+                <p class="descripcion">Gafas de sol estilo Y2K</p>
+                <p class="precio">$4.50</p>
+                <laber>Elige el color </label>
+                <select class="opcion">
+                    <option value="blanco" data-precio="4.50">BLANCO</option>
+                    <option value="negro" data-precio="4.50">NEGRO</option>
+                    <option value="set2" data-precio="9">SET 2 ($9.00)</option>
+                </select>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="producto" data-id="brillo_labial" data-nombre="Brillo labial jelly wow SHEGLAM" data-precio="4" data-img="./assets/img/gloss.jpeg">
+            <img src="./assets/img/gloss.jpeg" alt="Brillo labial">
+            <div class="info_producto">
+                <h3 class="titulo">Brillo labial jelly wow SHEGLAM</h3> 
+                <p class="descripcion">Aceite labial hidratante con brillo rosado</p>
+                <p class="precio">$4.00</p>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="producto" data-id="libreta_conejo" data-nombre="Libreta kawaii conejito cereza" data-precio="4" data-img="./assets/img/libreta_cute_conejo.jpeg">
+            <img src="./assets/img/libreta_cute_conejo.jpeg" alt="Libreta kawaii">
+            <div class="info_producto">
+                <h3 class="titulo">Libreta kawaii conejito cereza</h3> 
+                <p class="descripcion">Cuaderno espiral A5 80 hojas</p>
+                <p class="precio">$4.00</p>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="producto" data-id="llavero_skzoo" data-nombre="Llavero acrílico SKZOO Stray Kids" data-img="./assets/img/llavero_skzoo.jpeg">
+            <img src="./assets/img/llavero_skzoo.jpeg" alt="Llavero del grupo Stray Kids">
+            <div class="info_producto">
+                <h3 class="titulo">Llavero acrílico SKZOO Stray Kids</h3> 
+                <p class="descripcion">Llavero acrílico con dije estrella</p>
+                <p class="precio">$3.00</p>
+                <laber>Elige tu personaje </label>
+                <select class="opcion">
+                    <option value="wolfchan" data-precio="3">WOLFCHAN</option>
+                    <option value="leebit" data-precio="3">LEEBIT</option>
+                    <option value="dwaekki" data-precio="3">DWAEKKI</option>
+                    <option value="jiniret" data-precio="3">JINIRET</option>
+                    <option value="han_quokka" data-precio="3">HAN QUOKKA</option>
+                    <option value="bbokari" data-precio="3">BBOKARI</option>
+                    <option value="puppym" data-precio="3">PUPPYM</option>
+                    <option value="foxi" data-precio="3">FOXI.NY</option>
+                    <option value="set8" data-precio="24">SET 8 ($24.00)</option>
+                </select>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="producto" data-id="resaltadores" data-nombre="Resaltador con tapa forma de huella de gato. Tinta pastel" data-img="./assets/img/resaltadores.jpeg">
+            <img src="./assets/img/resaltadores.jpeg" alt="resaltadores">
+            <div class="info_producto">
+                <h3 class="titulo">Resaltadores huellira pastel</h3> 
+                <p class="descripcion">Resaltador con tapa forma de huella de gato. Tinta pastel</p>
+                <p class="precio">$1.00</p>
+                <laber>Elige el color</label>
+                <select class="opcion">
+                    <option value="morado" data-precio="1">MORADO</option>
+                    <option value="rosado" data-precio="1">ROSADO</option>
+                    <option value="amarillo" data-precio="1">AMARILLO</option>
+                    <option value="naranja" data-precio="1">NARANJA</option>
+                    <option value="verde" data-precio="1">VERDE MENTA</option>
+                    <option value="celeste" data-precio="1">CELESTE</option>
+                    <option value="set6" data-precio="6">SET 6 ($6.00)</option>
+                </select>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="producto" data-id="termo_plastico" data-nombre="Tomatodo motivacional" data-img="./assets/img/termo_plastico.jpeg">
+            <img src="./assets/img/termo_plastico.jpeg" alt="termo plastico">
+            <div class="info_producto">
+                <h3 class="titulo">Tomatodo motivacional</h3> 
+                <p class="descripcion">Tomatodo de plástico resistente con medidor de 8am a 9pm, tapa metálica rosca con asa para colgar</p>
+                <p class="precio">$4.00</p>
+                <laber>Elige el color </label>
+                <select class="opcion">
+                    <option value="tomatodo_morado" data-precio="4">MORADO</option>
+                    <option value="tomatodo_rosado" data-precio="4">ROSADO</option>
+                    <option value="tomatodo_celeste" data-precio="4">CELESTE</option>
+                    <option value="set3" data-precio="12">SET 3 ($12.00)</option>
+                </select>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="producto" data-id="vaso_vidrio" data-nombre="Vaso vidrio con tapa bambú y sorbete" data-precio="5" data-img="./assets/img/termo_vidrio.jpeg">
+            <img src="./assets/img/termo_vidrio.jpeg" alt="Vaso vidrio con tapa bambú y sorbete">
+            <div class="info_producto">
+                <h3 class="titulo">Vaso vidrio con tapa bambú y sorbete</h3> 
+                <p class="descripcion">Vaso tipo lata de vidrio con tapa banbú y sorbete de vidio reutilizable</p>
+                <p class="precio">$5.00</p>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="producto" data-id="tinta_labial" data-nombre="Tinta labial en forma de paleta" data-precio="1.50" data-img="./assets/img/tinta_labios.jpeg">
+            <img src="./assets/img/tinta_labios.jpeg" alt="tinta de labios">
+            <div class="info_producto">
+                <h3 class="titulo">Tinta labial en forma de paleta</h3> 
+                <p class="descripcion">Tinta labial en forma de paleta kawaii. Color rojo natural duradero</p>
+                <p class="precio">$1.50</p>
+                <button class="btn_carrito">Agregar al carrito</button>
+            </div>
+        </div>
+    </section>   
+    <footer id="contacto">
+        <div class="footer_redes">
+            <p>Contactanos mediante nuestras redes sociales:</p>
+            <div class="img_footer">
+            <a href="mailto:lunari.shop13@gmail.com"><img src="./assets/img/correo.svg" alt="gmail" width="50px" height="50px"></a>
+            <a href="https://www.instagram.com/lunari_shop.ec?cplk=NzN2cWhoaWFrZ2Fk" target="_blank"><img src="./assets/img/insta.svg" alt="instagram" width="50px" height="50px"></a>
+            <a href="https://wa.me/593999810503?text=Hola%20quiero%20información" target="_blank"><img src="./assets/img/whatsapp.svg" alt="WhatsApp" width="50px" height="50px"></a>
+            </div>
+        </div>
+        <div class="footer_pagos">
+            <p>Métodos de pago:</p>
+            <div class="img_footer">
+            <img src="./assets/img/efectivo.svg" alt="pagos en efectivo" width="50px" height="50px">
+            <img src="./assets/img/tarjeta.svg" alt="pagos con tarjeta" width="50px" height="50px">
+            </div>
+        </div>  
+    </footer>
+    <script src="main.js"> </script>
+</body>

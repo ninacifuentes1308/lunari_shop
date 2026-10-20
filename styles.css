@@ -204,7 +204,7 @@ button.pregunta {
 .respuesta.activa {
     display: block;
 }
-footer {
+#contacto {
     background-color: #A69F9D;
     padding: 20px;
     margin-top: 24px;
@@ -229,6 +229,102 @@ footer {
 .img_footer {
     display: flex;
     gap: 50px;
+}
+#mini_banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2rem 4rem;
+    background:#FAD2ED;
+    padding: 5rem;
+    text-align:center;
+    font-family: 'quicksand ', sans-serif;
+    border-radius:15px;
+}  
+#catalogo {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+}
+.producto {
+    width: 280px;
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 15px; 
+    overflow:hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+.producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background: #FFFFFF;
+}
+.info_producto {
+    padding: 15px;
+    display: flex;
+    flex-direction: column; 
+    gap: 8px; 
+    flex-grow: 1;
+}
+.precio {
+    font-weight: bold;
+    color: #fd026bff;
+}
+.info_producto label {
+    margin-top: 5px;
+    font-size: 14px;
+}
+.info_producto select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #CCCCCC; 
+}
+.btn_carrito {
+    margin-top: auto;
+    padding: 10px; 
+    background: #A855F7;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.btn_carrito:hover {
+    background: #9333EA;
+}
+.carrito {
+    max-width:1100px;
+    margin: 40px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+.prod_carrito{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    padding: 15px;
+}
+.prod_carrito img {
+    width: 80px;
+    height: 80px;
+    object-fit: conver;
+    border-radius: 10px;
+}
+.prod_info {
+    flex: 1;
+}
+#total {
+    margin-top: 20px;
+    font-size: 30px;
 }
 @keyframes flotar {
     0% {
@@ -274,41 +370,103 @@ img { max-width: 100%; height: auto; }
     gap: 1rem;
     padding: 1rem;
   }
-  .logoytitulo img { width: 80px !important; height: 80px !important; }
-  .logoytitulo h1 { font-size: 1.8rem; }
-  nav ul { gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
-  nav a { font-size: 1rem; }
+  .logoytitulo img {   
+    width: 80px !important; 
+    height: 80px !important; 
+}
+  .logoytitulo h1 { 
+    font-size: 1.8rem; 
+}
+  nav ul { 
+    gap: 0.8rem; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+}
+  nav a { 
+    font-size: 1rem; 
+}
 
-  #inicio { padding: 1rem; }
+  #inicio { 
+    padding: 1rem; 
+}
   .banner {
-    flex-direction: column !important; /* esto arregla tu banner */
+    flex-direction: column !important; /* para arreglar el banner */
     padding: 2rem 1rem;
     gap: 1.5rem;
     text-align: center;
   }
-  .textobanner h2 { font-size: 1.5rem; }
-  .textobanner h4 { font-size: 1.2rem; }
-  .banner img { width: 200px !important; height: 200px !important; }
+  .textobanner h2 { 
+    font-size: 1.5rem; 
+}
+  .textobanner h4 { 
+    font-size: 1.2rem; 
+}
+  .banner img { 
+    width: 200px !important; 
+    height: 200px !important; 
+}
 
-  #historia { flex-direction: column; }
-  .sobre_mi { margin: 1rem; padding: 2rem 1rem; }
-  .imagen img { width: 250px !important; height: 250px !important; }
+  #historia { 
+    flex-direction: column; 
+}
+  .sobre_mi { 
+    margin: 1rem; 
+    padding: 2rem 1rem; 
+}
+  .imagen img { 
+    width: 250px !important; 
+    height: 250px !important; 
+}
 
-  .pasos { gap: 20px; padding: 0 1rem; }
-  .paso { width: 100%; max-width: 320px; padding: 1.5rem; font-size: 1.1rem; }
+  .pasos { 
+    gap: 20px; 
+    padding: 0 1rem; 
+}
+  .paso { 
+    width: 100%; 
+    max-width: 320px; 
+    padding: 1.5rem; 
+    font-size: 1.1rem; 
+}
 
-  #reseñas { padding: 40px 10px; }
-  .reseña { width: 240px; }
+  #reseñas { 
+    padding: 40px 10px; 
+}
+  .reseña { 
+    width: 240px; 
+}
 
-  #preguntas { padding: 0 1rem; align-items: center; }
-  button.pregunta { width: 100%; font-size: 1rem; }
+  #preguntas { 
+    padding: 0 1rem; 
+    align-items: center; 
+}
+  button.pregunta { 
+    width: 100%; 
+    font-size: 1rem; 
+}
 
-  footer {
+  #contacto {
     flex-direction: column;
     gap: 20px;
     font-size: 16px;
     text-align: center;
   }
-  .footer_redes, .footer_pagos { align-items: center; width: 100%; }
-  .img_footer { gap: 20px; justify-content: center; }
+  .footer_redes, .footer_pagos { 
+    align-items: 
+    center; width: 100%; }
+  .img_footer { 
+    gap: 20px; 
+    justify-content: center; }
+  .producto img {
+    height: 200px;
+    }
+    .prod_carrito {
+        width: 90%;
+        max-width: 340px;
+    }
+    #total, .total {
+        width: 90%;
+        text-align: center;
+        margin-top: 20px;
+    }
 }
