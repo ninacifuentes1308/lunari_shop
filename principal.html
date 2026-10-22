@@ -30,11 +30,27 @@
             <h1>Elige tu favorito, todo hecho con amor.</h1>
         </div>
     </section>
+    <div class="barra_filtros">
+        <input type="text" id="buscador" placeholder="Buscar producto...">
+        <select id="filtro_categoria">
+            <option value="todos">Todas</option>
+            <option value="belleza">Belleza</option>
+            <option value="kpop">Kpop</option>
+            <option value="accesorios">Accesorios</option>
+            <option value="papeleria">Papeleria</option>
+            <option value="tumblers">Tumblers</option>
+        </select>
+        <select id="ordenprecio">
+            <option value="default">Ordenar por:</option>
+            <option value="menos_mas">Menor a mayor</option>
+            <option value="mas_menos">Mayor a menor</option>
+        </select>
+    </div>
     <section id="catalogo">
-        <div class="producto" data-id="peluche_bt21" data-nombre="Peluche BT21" data-img="./assets/img/bts_peluches.jpeg">
+        <div class="producto" data-id="peluche_bts" data-categoria="kpop" data-precio="12" data-nombre="Peluche BT21" data-img="./assets/img/bts_peluches.jpeg">
             <img src="./assets/img/bts_peluches.jpeg" alt="peluche del grupo de kpop bts">
             <div class="info_producto">
-                <h3 class="titulo">Peluche BT21 a elección</h3> 
+                <h3 class="titulo">Peluche BT21 a elección (BTS)</h3> 
                 <p class="descripcion">Peluche suave de 20 cm BT21 (Boyband BTS)</p>
                 <p class="precio">$12.00</p>
                 <laber>Elige tu personaje </label>
@@ -50,7 +66,7 @@
                 <button class="btn_carrito">Agregar al carrito</button>
             </div>
         </div>
-        <div class="producto" data-id="llavero_guitarra" data-nombre="Llavero guitarra eléctrica con dije de estrella" data-precio="3.75" data-img="./assets/img/llavero_guitarra.jpeg">
+        <div class="producto" data-id="llavero_guitarra" data-categoria="accesorios" data-precio="3.75" data-nombre="Llavero guitarra eléctrica con dije de estrella" data-precio="3.75" data-img="./assets/img/llavero_guitarra.jpeg">
             <img src="./assets/img/llavero_guitarra.jpeg" alt="Llavero forma de guitarra eléctrica">
             <div class="info_producto">
                 <h3 class="titulo">Llavero guitarra eléctrica con dije de estrella</h3> 
@@ -59,7 +75,7 @@
                 <button class="btn_carrito">Agregar al carrito</button>
             </div>
         </div>
-        <div class="producto" data-id="gafas_y2k" data-nombre="Gafas de sol rectangulares Y2K" data-img="./assets/img/gafas.jpeg">
+        <div class="producto" data-id="gafas_y2k" data-categoria="accesorios" data-precio="4.50" data-nombre="Gafas de sol rectangulares Y2K" data-img="./assets/img/gafas.jpeg">
             <img src="./assets/img/gafas.jpeg" alt="Gafas">
             <div class="info_producto">
                 <h3 class="titulo">Gafas de sol rectangulares Y2K</h3> 
@@ -74,7 +90,7 @@
                 <button class="btn_carrito">Agregar al carrito</button>
             </div>
         </div>
-        <div class="producto" data-id="brillo_labial" data-nombre="Brillo labial jelly wow SHEGLAM" data-precio="4" data-img="./assets/img/gloss.jpeg">
+        <div class="producto" data-id="brillo_labial" data-categoria="belleza" data-precio="4" data-nombre="Brillo labial jelly wow SHEGLAM" data-precio="4" data-img="./assets/img/gloss.jpeg">
             <img src="./assets/img/gloss.jpeg" alt="Brillo labial">
             <div class="info_producto">
                 <h3 class="titulo">Brillo labial jelly wow SHEGLAM</h3> 
@@ -83,7 +99,7 @@
                 <button class="btn_carrito">Agregar al carrito</button>
             </div>
         </div>
-        <div class="producto" data-id="libreta_conejo" data-nombre="Libreta kawaii conejito cereza" data-precio="4" data-img="./assets/img/libreta_cute_conejo.jpeg">
+        <div class="producto" data-id="libreta_conejo" data-categoria="papeleria" data-precio="4" data-nombre="Libreta kawaii conejito cereza" data-precio="4" data-img="./assets/img/libreta_cute_conejo.jpeg">
             <img src="./assets/img/libreta_cute_conejo.jpeg" alt="Libreta kawaii">
             <div class="info_producto">
                 <h3 class="titulo">Libreta kawaii conejito cereza</h3> 
@@ -92,7 +108,7 @@
                 <button class="btn_carrito">Agregar al carrito</button>
             </div>
         </div>
-        <div class="producto" data-id="llavero_skzoo" data-nombre="Llavero acrílico SKZOO Stray Kids" data-img="./assets/img/llavero_skzoo.jpeg">
+        <div class="producto" data-id="llavero_skzoo" data-categoria="kpop" data-precio="3" data-nombre="Llavero acrílico SKZOO Stray Kids" data-img="./assets/img/llavero_skzoo.jpeg">
             <img src="./assets/img/llavero_skzoo.jpeg" alt="Llavero del grupo Stray Kids">
             <div class="info_producto">
                 <h3 class="titulo">Llavero acrílico SKZOO Stray Kids</h3> 
@@ -113,7 +129,7 @@
                 <button class="btn_carrito">Agregar al carrito</button>
             </div>
         </div>
-        <div class="producto" data-id="resaltadores" data-nombre="Resaltador con tapa forma de huella de gato. Tinta pastel" data-img="./assets/img/resaltadores.jpeg">
+        <div class="producto" data-id="resaltadores" data-categoria="papeleria" data-precio="1" data-nombre="Resaltador con tapa forma de huella de gato. Tinta pastel" data-img="./assets/img/resaltadores.jpeg">
             <img src="./assets/img/resaltadores.jpeg" alt="resaltadores">
             <div class="info_producto">
                 <h3 class="titulo">Resaltadores huellira pastel</h3> 
@@ -132,7 +148,7 @@
                 <button class="btn_carrito">Agregar al carrito</button>
             </div>
         </div>
-        <div class="producto" data-id="termo_plastico" data-nombre="Tomatodo motivacional" data-img="./assets/img/termo_plastico.jpeg">
+        <div class="producto" data-id="termo_plastico" data-categoria="tumblers" data-precio="4" data-nombre="Tomatodo motivacional" data-img="./assets/img/termo_plastico.jpeg">
             <img src="./assets/img/termo_plastico.jpeg" alt="termo plastico">
             <div class="info_producto">
                 <h3 class="titulo">Tomatodo motivacional</h3> 
@@ -148,7 +164,7 @@
                 <button class="btn_carrito">Agregar al carrito</button>
             </div>
         </div>
-        <div class="producto" data-id="vaso_vidrio" data-nombre="Vaso vidrio con tapa bambú y sorbete" data-precio="5" data-img="./assets/img/termo_vidrio.jpeg">
+        <div class="producto" data-id="vaso_vidrio" data-categoria="tumblers" data-precio="5" data-nombre="Vaso vidrio con tapa bambú y sorbete" data-precio="5" data-img="./assets/img/termo_vidrio.jpeg">
             <img src="./assets/img/termo_vidrio.jpeg" alt="Vaso vidrio con tapa bambú y sorbete">
             <div class="info_producto">
                 <h3 class="titulo">Vaso vidrio con tapa bambú y sorbete</h3> 
@@ -157,7 +173,7 @@
                 <button class="btn_carrito">Agregar al carrito</button>
             </div>
         </div>
-        <div class="producto" data-id="tinta_labial" data-nombre="Tinta labial en forma de paleta" data-precio="1.50" data-img="./assets/img/tinta_labios.jpeg">
+        <div class="producto" data-id="tinta_labial" data-categoria="belleza" data-precio="1.50" data-nombre="Tinta labial en forma de paleta" data-precio="1.50" data-img="./assets/img/tinta_labios.jpeg">
             <img src="./assets/img/tinta_labios.jpeg" alt="tinta de labios">
             <div class="info_producto">
                 <h3 class="titulo">Tinta labial en forma de paleta</h3> 

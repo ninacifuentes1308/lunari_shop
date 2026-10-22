@@ -306,25 +306,88 @@ button.pregunta {
 }
 .prod_carrito{
     display: flex;
-    gap: 15px;
+    gap: 8px !important;
     align-items: center;
     background: #FFFFFF;
     border: 2px solid #000000;
     border-radius: 12px;
-    padding: 15px;
+    padding: 15px 30px;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    margin-bottom: 12px;
 }
 .prod_carrito img {
     width: 80px;
-    height: 80px;
+    height: 100px;
     object-fit: conver;
     border-radius: 10px;
 }
 .prod_info {
     flex: 1;
+    margin-left: 8px;
+    padding-left: 0;
+}
+.precio_carrito {
+    margin-left: 20px !important;
+    margin-right: 60px !important;
+    align-self: center !important;
+    transform: translateY(-25px);
 }
 #total {
     margin-top: 20px;
     font-size: 30px;
+}
+.barra_filtros {
+    background: #EEF2FF;
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 14px;
+    margin: 0 15px 20px 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.barra_filtros input, .barra_filtros select {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 2px solid #CBD5E1;
+    background: #FFFFFF;
+    min-width: 160px;
+}
+.btn_control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.btn_mas, .btn_menos {
+    background-color: #FFFFFF;
+    width: 40px;
+    height: 40px;
+    border-radius: 15%;
+    border: 2px solid #D9D0CE;
+    cursor: pointer;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0%;
+}
+.btn_mas:hover, .btn_menos:hover {
+    transform: scale(1.10);
+}
+.btn_eliminar {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 6px;
+    padding: 0%;
 }
 @keyframes flotar {
     0% {
@@ -467,30 +530,54 @@ img { max-width: 100%; height: auto; }
         padding: 0;
     }  
     .prod_carrito {
-        width: 108% !important;
-        display: grid !important;
-        grid-template-columns: 75px 1fr auto !important;
-        align-items: center;
+        display: flex !important;
+        flex-direction: column;
+        height: auto !important;
+        min-height: 210px;
         gap: 10px;
-        padding: 12px !important;
-        margin: 0 auto 12px auto;
+        align-items: center !important;
+        padding: 16px !important;
     }
     .prod_carrito img {
-        width: 65px !important;
-        height: 65px !important;
+        width: 100px !important;
+        height: 80px !important;
+    }
+    .prod_info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .precio_carrito {
+        display: block !important;
+        text-align: left !important;
+        font-weight: 800 !important;
+        font-size: 18px !important;
+        margin-top: 20px;
+ 
     }
     .prod_info h4 {
-        font-size: 14px !important;
-        line-height: 1.2;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-all;
+        font-size: 14px;
+        line-height: 1.4
     }
-    .prod_carrito .precio {
-        text-align: right;
+    
+    .btn_control {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        margin-top: 8px;
     }
-    h2, #total, .total {
-        width: 90% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        padding-left: 5px;
-        box-sizing: border-box;
+    .btn_menos, .btn_mas, .btn_eliminar {
+        width: 40px;
+        height: 40px;
+        min-height: 40px;
+        border-radius: 20%;
+        padding: 0%;
     }
+    /*NO HE HECHO MEDIA DE FILTROS PQ SEGUN SE VE BIEN, TENGO Q REVISAR */
 }

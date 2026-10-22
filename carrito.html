@@ -47,13 +47,35 @@
                     <img src="${p.img}" alt="${p.nombre}">
                     <div class="prod_info">
                         <h4>${p.nombre}</h4>
-                        <p style="text-transform:capitalize">${varianteBonita} - Cant: ${p.cantidad}</p>
+                        <p style="text-transform:capitalize">${varianteBonita}</p>
+                        <div class="btn_control">
+                            <button class="btn_menos" data-clave="${p.id}_${p.variante}">➖</button>
+                            <span>Cant: ${p.cantidad}</span>
+                            <button class="btn_mas" data-clave="${p.id}_${p.variante}">➕</button>
+                            <button class="btn_eliminar" data-clave="${p.id}_${p.variante}">🗑️</button>
+                        </div>
                     </div>
-                    <strong>$${(p.precio*p.cantidad).toFixed(2)}</strong> 
+                    <strong class="precio_carrito"> $${(p.precio*p.cantidad).toFixed(2)}</strong> 
                 </div>`;
             });
             total_txt.textContent = `total: $${total}`;
         }
+            lista.addEventListener("click", (e) => {
+                let clave = e.target.dataset.clave;
+                if(!clave) return;
+                let carritoactual = JSON.parse(localStorage.getItem("carrito")) || [];
+                let prod = carritoactual.find(i => `${i.id}_${i.variante}` === clave);
+                if(e.target.classList.contains("btn_mas") && prod) prod.cantidad++;
+                if(e.target.classList.contains("btn_menos") && prod) {
+                    if(prod.cantidad>1) prod.cantidad--;
+                    else carritoactual =carritoactual.filter(i => `${i.id}_${i.variante}` !==clave);
+                }
+                if(e.target.classList.contains("btn_eliminar")){
+                    carritoactual = carritoactual.filter(i => `${i.id}_${i.variante}` !==clave);
+                }
+                localStorage.setItem("carrito", JSON.stringify(carritoactual));
+                location.reload();
+            });
     </script>
     <footer id="contacto">
         <div class="footer_redes">

@@ -29,13 +29,13 @@ document.querySelectorAll(".btn_carrito").forEach(boton => {
             elegido = seleccionado.options[seleccionado.selectedIndex];
             varianteNombre = elegido.textContent.trim();
             if (elegido.dataset.precio) {
-                precioFinal = parseFloat(elegido.dataset.precio);
+                precioFinal = parseFloat(elegido.dataset.precio); 
             }
         }
         const claveunica = `${id}_${variante}`;
         //Para llamar el carrito o crear
         let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-        let carritoexistente = carrito.find(item => "${item.id}_{item.variante}" === claveunica);
+        let carritoexistente = carrito.find(item => `${item.id}_${item.variante}` === claveunica);
 
         if (carritoexistente) {
             carritoexistente.cantidad += 1;
@@ -67,3 +67,46 @@ function actualizarContador() {
     }
 }
 actualizarContador();
+
+//para el filtro y barra de busqueda
+
+document.addEventListener(`DOMContentLoaded`,()=>{
+    const buscador = document.getElementById(`buscador`);
+    const filtroCate = document.getElementById(`filtro_categoria`) || document.getElementById(`filtroCategoria`);
+    const productos = document.querySelectorAll(`.producto`);
+    const ordenprecio = document.getElementById(`ordenprecio`);
+    const contenedor = document.querySelector(`.productos`)|| document.getElementById(`catalogo`) || productos[0]?.parentNode;
+
+    if (!buscador || !filtroCate) {
+        console.log("Falla buscador o filtro");
+        return;
+    }
+
+    function filtraryOrdenar() {
+        const texto = buscador.value.toLowerCase();
+        const categoria = filtroCate.value;
+        const orden = ordenprecio?.value || `default`;
+
+        let lista = Array.from(productos);
+        if (orden === `menos_mas`) {
+            lista.sort((a,b) =>(parseFloat(a.dataset.precio) || 0) - (parseFloat(b.dataset.precio) || 0 ));
+        }else if (orden === `mas_menos`) {
+            lista.sort((a,b) =>(parseFloat(b.dataset.precio) || 0) - (parseFloat(a.dataset.precio) || 0));
+        }
+        if (contenedor) {
+            lista.forEach(prod => contenedor.appendChild(prod));
+        }
+        lista.forEach(prod => {
+            const cat = prod.dataset.categoria;
+            const nombre = (prod.dataset.nombre || ``).toLowerCase();
+            const pasaCat = categoria === `todos` || cat === categoria;
+            const pasaTexto = nombre.includes(texto);
+            prod.style.display = (pasaCat && pasaTexto) ? ``: `none`;
+        })
+    }
+    buscador.addEventListener(`input`, filtraryOrdenar);
+    filtroCate.addEventListener(`change`, filtraryOrdenar);
+    if (ordenprecio) {
+        ordenprecio.addEventListener(`change`, filtraryOrdenar);
+    }
+});
