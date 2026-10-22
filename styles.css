@@ -84,7 +84,7 @@ h4 {
     font-weight: bold;
     color: #000000;
 }
-button {
+.banner .btn_principal {
     font-size: 1.5rem;
     font-weight: bold;
     color: #000000;
@@ -92,9 +92,10 @@ button {
     border: 2px solid white;
     padding: 1rem 2rem;
     border-radius: 1rem;
+    cursor: pointer;
 
 }
-button:hover {
+.banner .btn_principal:hover {
     background: #CCC6F7;
 
 }
@@ -388,6 +389,60 @@ button.pregunta {
     justify-content: center;
     margin-left: 6px;
     padding: 0%;
+}
+.contacto_form {
+    max-width: 580px;
+    margin: 80px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+.contacto_form h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+.contacto_form p {
+    color: #8A6A6A;
+    margin-bottom: 24PX;
+}
+.form_contacto {
+    background: #FFFFFF;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(232,160,168,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: left;
+}
+.form_dato {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.form_dato label{
+    font-weight: 600;
+    font-size: 14px;
+}
+.form_dato input, .form_dato textarea{
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #f183cd;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: 0 0 0 3px rgba(232, 160, 168, 0.2);
+}
+.form_dato input:focus, .form_dato textarea:focus {
+    border-color: #b815a2;
+    box-shadow: 0 0 0 3px rgba(232, 160, 168, 0.2);
+}
+.form_contacto .btn_principal {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px;
+    cursor: pointer;
+    background-color: #fdc9e5;
 }
 @keyframes flotar {
     0% {
