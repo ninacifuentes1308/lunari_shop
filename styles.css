@@ -444,6 +444,68 @@ button.pregunta {
     cursor: pointer;
     background-color: #fdc9e5;
 }
+.form_registro_inicio {
+    max-width: 580px;
+    margin: 80px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+.form_registro_inicio h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+.form_registro_inicio p {
+    color: #8A6A6A;
+    margin-bottom: 24PX;
+}
+.formulario {
+    background: #FFFFFF;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(232,160,168,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: left;
+}
+.formulario .btn_principal {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px;
+    cursor: pointer;
+    background-color: #fdc9e5;
+}
+.formulario p {
+    text-align: center;
+}
+.password_wrapper {
+    position: relative;
+}
+.password_wrapper{
+    width: 100%;
+    padding-right: 75px;
+}
+.contraseña_privada {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    background: none;
+    border: none;
+    color: #C96A8A;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.error {
+    color: #EE2939;
+    font-size: 0.8rem;
+    display: none;
+    margin-top: 4px;
+}
+/*Quitar el ojo por defecto al momento de poner contraseña */
+input[type="password"]::-ms-reveal, input[type="password"]::-ms-clear{
+    display: none;
+}
 @keyframes flotar {
     0% {
         transform: translateY(0);

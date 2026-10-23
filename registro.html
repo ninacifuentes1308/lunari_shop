@@ -23,6 +23,34 @@
             </ul>
         </nav>
     </header>
+    <main class="form_registro_inicio">
+        <h2>Crea tu cuenta en Lunari ✨</h2>
+        <form class="formulario" id="form_registro">
+            <div class="form_dato">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form_dato">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" required>
+                <small class="error" id="error_correo"></small>
+            </div>
+            <div class="form_dato password_wrapper">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+                <small class="error" id="error_password"></small>
+                <button type="button" class="contraseña_privada" data-target="password">Mostrar</button>
+            </div>
+            <div class="form_dato password_wrapper">
+                <label for="confirmar">Confirmar contraseña:</label>
+                <input type="password" id="confirmar" name="confirmar" required>
+                <button type="button" class="contraseña_privada" data-target="confirmar">Mostrar</button>
+                <small class="error" id="error_confirmar"></small>
+            </div>
+            <button type="submit" class="btn_principal">Registrarse</button>
+            <p>¿Ya tienes una cuenta? <a href="login.html">Iniciar Sesión</a></p>
+        </form>
+    </main>
     <footer id="contacto">
         <div class="footer_redes">
             <p>Contactanos mediante nuestras redes sociales:</p>

@@ -110,3 +110,58 @@ document.addEventListener(`DOMContentLoaded`,()=>{
         ordenprecio.addEventListener(`change`, filtraryOrdenar);
     }
 });
+// para mostrar u ocultar la contraseña en el login y en el registro
+const botones = document.querySelectorAll (`.contraseña_privada`);
+if (botones.length>0) {
+    botones.forEach(btn => {
+        btn.addEventListener(`click`, () => {
+            const id = btn.getAttribute(`data-target`);
+            const input = document.getElementById(id);
+            if (input.type === `password`) {
+                input.type = `text`;
+                btn.textContent = `Ocultar`;
+            } else {
+                input.type = `password`;
+                btn.textContent = `Mostrar`
+            }
+        })
+    })
+}
+const formregistro = document.getElementById(`form_registro`);
+if (formregistro) {
+    formregistro.addEventListener(`submit`,(e)=>{
+        e.preventDefault();
+        let valido=true;
+        const email=document.getElementById(`correo`).value.trim();
+        const pass = document.getElementById(`password`).value;
+        const confirmar=document.getElementById(`confirmar`).value;
+        //para los errores
+        document.querySelectorAll(`.error`).forEach(el=>el.style.display=`none`);
+        //validar el email
+        const errormail = /^[a-zA-Z0-9._%+-]+@[A-zA-Z0-9.-]+\.(com|ec|net|org|edu|com\.ec|gob|io)$/i;
+        if (!errormail.test(email)) {
+            document.getElementById(`error_correo`).textContent = `Por favor ingresa un correo válido ejemplo: tunombre@gmail.com`;
+            document.getElementById(`error_correo`).style.display = `block`;
+            valido=false
+        }
+        // validar la contraseña
+        const letras4passwordd=(pass.match(/[a-zA-Z]/g) ||[]).length>=4;
+        const connumero=/[0-9]/.test(pass);
+        const consigno=/[^a-zA-Z0-9]/.test(pass);
+        if (!letras4passwordd||!connumero||!consigno||pass.length<4) {
+            document.getElementById(`error_password`).textContent=`Minimo 4 letras, 1 numero y 1 signo.`
+            document.getElementById(`error_password`).style.display=`block`;
+            valido=false
+        }
+        //Validar de las contraseñas coincidan
+        if (pass !== confirmar) {
+            document.getElementById(`error_confirmar`).textContent=`Las contraseñas no coinciden`;
+            document.getElementById(`error_confirmar`).style.display=`block`;
+            valido=false;
+        }
+        if (valido) {
+            alert(`Registro válido`);
+            formregistro.submit();
+        }
+    });
+}
