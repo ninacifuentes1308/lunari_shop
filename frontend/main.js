@@ -129,7 +129,7 @@ if (botones.length>0) {
 }
 const formregistro = document.getElementById(`form_registro`);
 if (formregistro) {
-    formregistro.addEventListener(`submit`,(e)=>{
+    formregistro.addEventListener(`submit`, async (e)=>{
         e.preventDefault();
         let valido=true;
         const email=document.getElementById(`correo`).value.trim();
@@ -160,8 +160,68 @@ if (formregistro) {
             valido=false;
         }
         if (valido) {
-            alert(`Registro válido`);
-            formregistro.submit();
+            const nombre=document.getElementById(`nombre`)?.value.trim()|| '';
+            const telefono=document.getElementById(`telefono`)?.value.trim()|| '';
+            try{
+                const respuestaregistro = await fetch(`http://localhost:3000/api/registro`,{
+                    method:`POST`,
+                    headers: { 'Content-Type': 'application/json'}, 
+                    body: JSON.stringify({nombre,correo:email, password:pass, telefono})
+                });
+                const datos=await respuestaregistro.json();
+                if (!respuestaregistro.ok) {
+                    alert(datos.mensaje);
+                    return
+                }
+                alert(datos.mensaje);
+                formregistro.reset();
+            } catch (error) {
+                alert(`No se puede conectar con el servidor. ¿Tienes prendido el backend con node index.js?`);
+            }
         }
+    });
+}
+const formlogin=document.getElementById('formlogin');
+if (formlogin){
+    formlogin.addEventListener('submit', async(e)=>{
+        e.preventDefault();
+        const correlogin=document.getElementById('correo').value.trim();
+        const passwordlogin=document.getElementById('password').value;
+        try{
+            const reslogin=await fetch('http://localhost:3000/api/login',{
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body:JSON.stringify({correo: correlogin,password: passwordlogin})
+            });
+            const datalogin=await reslogin.json();
+            alert(datalogin.mensaje);
+            if (reslogin.ok) {
+                localStorage.setItem('nombrelunari',datalogin.nombre)
+                window.location.href='index.html';
+            }
+        } catch (errorlogin) {
+            alert('No se pudo conectar con el servidor');
+        }
+    });
+}
+//para mostrar si ya ingresò
+const nombreguardado = localStorage.getItem('nombrelunari');
+const linklogin=document.getElementById('linklogin');
+const saludousuario=document.getElementById('saludousuario');
+const btnsalir=document.getElementById('btnsalir');
+if (nombreguardado && linklogin) {
+    linklogin.parentElement.style.display='none';
+    if (saludousuario) {
+        saludousuario.style.display='inline';
+        saludousuario.textContent='Hola, ' + nombreguardado;
+    } 
+    if(btnsalir) {
+        btnsalir.style.display='inline';
+    }
+}
+if (btnsalir) {
+    btnsalir.addEventListener('click',()=>{
+        localStorage.removeItem('nombrelunari');
+        window.location.href='index.html';
     });
 }
