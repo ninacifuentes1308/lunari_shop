@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de administrador</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="body_admin">
+    <h1 class="h1_admin">Lunari - Panel de Administrador</h1>
+    <h2>Agregar Producto</h2>
+    <input class="admin" id="nombre" placeholder="Nombre ej: Anillo con dije de Luna">
+    <input class="admin" id="precio" type="number" placeholder="Precio ej: 4.50">
+    <input class="admin" id="imagen" placeholder="Link de imagen ej: https://...">
+    <input class="admin" id="categoria" placeholder="Categoria ej: Kpop, belleza, papeleria">
+    <input class="admin" id="stock" type="number" placeholder="Stock ej: 10">
+    <textarea class="admin" id="descripcion" placeholder="Descripción"></textarea>
+    <button class="boton_admin" onclick="crear()">Guardar producto</button>
+    <h2>Productos en tienda</h2>
+    <div id="lista"></div>
+    <h2>Pedidos LUNARI-XXXX</h2>
+    <div id="pedidos"></div>
+    <script>
+        const API = 'http://localhost:3000/api';
+        async function cargar() {
+            const res=await fetch(API+'/productos');
+            const datos=await res.json();
+            document.getElementById('lista').innerHTML=datos.map(p=>`
+                <div class= "card">
+                    <img src="${p.imagen}">
+                    <div style="flex:1>"
+                        <b>${p.nombre}</b> - $${p.precio}<br>
+                        ${p.categoria} | Stock: ${p.stock}<br>
+                        <small>${p.descripcion || ''}</small>
+                    </div>
+                    <button onclick="borrar('${p._id}')">Eliminar</button>
+                </div>`).join('');
+            const r2=await fetch(API+'/pedidos');
+            const ped=await r2.json();
+            document.getElementById('pedidos').innerHTML=ped.map(o=>`
+            <div class="card"><div style="flex:1">
+                <b>${o.codigo}</b> - ${o.nombre} - ${o.telefono}<br>
+                Total: $${o.total} - ${o.estado}
+            </div></div>`).join('');
+        }
+    async function crear() {
+        const body={
+            nombre: document.getElementById('nombre').value,
+            precio: Number(document.getElementById('precio').value),
+            imagen: document.getElementById('imagen').value,
+            categoria: document.getElementById('categoria').value,
+            stock: Number (document.getElementById('stock').value),
+            descripcion: document.getElementById('descripcion').value,
+        };
+        await fetch(API+'/productos',{method: 'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+        alert('Producto guardado');
+        cargar();
+    }
+    async function borrar(id) {
+        if(!confirm('¿Borrar?')) return;
+        await fetch(API+'/productos/'+id,{method:'DELETE'});
+        cargar();
+    }
+    cargar();
+    </script>
+</body>
+</html>

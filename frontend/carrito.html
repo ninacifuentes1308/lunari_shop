@@ -59,14 +59,21 @@
                     <strong class="precio_carrito"> $${(p.precio*p.cantidad).toFixed(2)}</strong> 
                 </div>`;
             });
-            total_txt.textContent = `total: $${total}`;
+            total_txt.textContent = `total: $${total.toFixed(2)}`;
         }
             lista.addEventListener("click", (e) => {
                 let clave = e.target.dataset.clave;
                 if(!clave) return;
                 let carritoactual = JSON.parse(localStorage.getItem("carrito")) || [];
                 let prod = carritoactual.find(i => `${i.id}_${i.variante}` === clave);
-                if(e.target.classList.contains("btn_mas") && prod) prod.cantidad++;
+                if(e.target.classList.contains("btn_mas") && prod){
+                    let stockcarrito=prod.stock ?? 10;
+                    if (prod.cantidad>=stockcarrito){
+                        alert(`Solo hay ${stockcarrito} en stock de ${prod.nombre}`);
+                        return;
+                    }
+                    prod.cantidad++;
+                }
                 if(e.target.classList.contains("btn_menos") && prod) {
                     if(prod.cantidad>1) prod.cantidad--;
                     else carritoactual =carritoactual.filter(i => `${i.id}_${i.variante}` !==clave);

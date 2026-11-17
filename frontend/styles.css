@@ -522,6 +522,47 @@ button.pregunta {
 input[type="password"]::-ms-reveal, input[type="password"]::-ms-clear{
     display: none;
 }
+/*Diseño para el panel admin*/
+.body_admin {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fcd1dd;
+    padding: 20px;
+}
+.h1_admin {
+    color: #B83280;
+}
+.admin {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    border: 1px solid #910462;
+}
+.boton_admin {
+    background: #B83380;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+.card {
+    background: #f3ddea;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 10px 0;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    box-shadow: 0 2px 8px #000100;
+}
+.card img{
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+}
 @keyframes flotar {
     0% {
         transform: translateY(0);

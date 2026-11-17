@@ -3,8 +3,11 @@ const express = require(`express`);
 const conectDB = require(`./setup/database`);
 const cors = require(`cors`);
 const Usuario = require(`./models/usuario`);
-const Producto = require(`./models/producto`)
+const Producto = require(`./models/producto`);
+const Pedido = require('./models/pedido');
 const app = express();
+app.use(express.static(__dirname));
+app.use(express.static(__dirname+'/../frontend'));
 conectDB();
 app.use(cors());
 app.use(express.json());
@@ -41,6 +44,41 @@ app.post('/api/login',async(req,res)=>{
     } catch (error) {
         res.status(500).json({mensaje: 'Error en el servidor', error: error.message});
     }
+});
+//productos para el catalogo y panel para administrador
+app.get('/api/productos', async (req, res)=>{
+    const productos=await Producto.find();
+    res.json(productos);
+});
+app.post('/api/productos', async (req,res)=>{
+    try {
+        const nuevo = new Producto(req.body);
+        await nuevo.save();
+        res.status(201).json(nuevo);
+    } catch (e) {res.status(500).json({mensaje: e.message}); }
+});
+app.delete('/api/productos/:id', async(req,res)=>{
+    await Producto.findByIdAndDelete(req.params.id);
+    res.json({ok:true});
+});
+//pedidos con el codigo LUNARI
+app.post('/api/pedidos', async (req,res)=>{
+    try{
+        const codigo ='LUNARI-'+Math.floor(1000+Math.random()*9000);
+        const nuevo = new Pedido({codigo, ...req.body});
+        await nuevo.save();
+        res.status(201).json(nuevo);
+    } catch(e){res.status(500).json({mensaje: e.message}); }
+});
+//para la IA integrada
+app.get('/api/pedidos/:codigo', async(req,res)=>{
+    const pedido = await Pedido.findOne({codigo:req.params.codigo});
+    if (!pedido) return res.status(404).json({mensaje:'No encontrado'});
+    res.json(pedido);
+});
+app.get('/api/pedidos',async(req,res)=>{
+    const pedidos = await Pedido.find().sort({fecha:-1});
+    res.json(pedidos);
 });
 const PORT=process.env.PORT || 3000;
 app.listen(PORT, ()=>{

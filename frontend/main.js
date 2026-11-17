@@ -11,13 +11,15 @@ preguntas.forEach(pregunta => {pregunta.addEventListener("click",() => {
         icono.textContent="+"
     }
 })}) 
-document.querySelectorAll(".btn_carrito").forEach(boton => {
-    boton.addEventListener("click",(e) => {
+document.addEventListener("click",(e)=> {
+    const boton=e.target.closest(".btn_carrito");
+    if (!boton) return;
         const tarjeta = boton.closest(".producto");
         let id = tarjeta.dataset.id;
         let nombre = tarjeta.dataset.nombre;
         let img = tarjeta.dataset.img;
         let precioBase = parseFloat(tarjeta.dataset.precio) || 0;
+        let stock = parseInt(tarjeta.dataset.stock) || 10;
         let variante = "unico";
         let precioFinal = precioBase;
         let elegido = null;
@@ -36,6 +38,11 @@ document.querySelectorAll(".btn_carrito").forEach(boton => {
         //Para llamar el carrito o crear
         let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
         let carritoexistente = carrito.find(item => `${item.id}_${item.variante}` === claveunica);
+        let cantidadActual = carritoexistente ? carritoexistente.cantidad: 0;
+        if (cantidadActual>=stock){
+            alert(`Solo hay ${stock} en stock de ${nombre}`);
+            return;
+        }
 
         if (carritoexistente) {
             carritoexistente.cantidad += 1;
@@ -47,7 +54,8 @@ document.querySelectorAll(".btn_carrito").forEach(boton => {
                 variante: variante,
                 varianteNombre: varianteNombre,
                 precio: precioFinal,
-                cantidad: 1
+                cantidad: 1,
+                stock: stock
             });
         }
         localStorage.setItem("carrito",JSON.stringify(carrito));
@@ -56,8 +64,7 @@ document.querySelectorAll(".btn_carrito").forEach(boton => {
 
         boton.textContent = "¡Agregado al carrito!";
         setTimeout(()=>boton.textContent = "Agregar al carrito",1000);
-    })
-})
+    });
 function actualizarContador() {
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     let total = carrito.reduce((sum,p) => sum + p.cantidad, 0);
@@ -87,7 +94,7 @@ document.addEventListener(`DOMContentLoaded`,()=>{
         const categoria = filtroCate.value;
         const orden = ordenprecio?.value || `default`;
 
-        let lista = Array.from(productos);
+        let lista = Array.from(document.querySelectorAll('.producto'));
         if (orden === `menos_mas`) {
             lista.sort((a,b) =>(parseFloat(a.dataset.precio) || 0) - (parseFloat(b.dataset.precio) || 0 ));
         }else if (orden === `mas_menos`) {
@@ -222,6 +229,6 @@ if (nombreguardado && linklogin) {
 if (btnsalir) {
     btnsalir.addEventListener('click',()=>{
         localStorage.removeItem('nombrelunari');
-        window.location.href='index.html';
+        window.location.href='index.html';  
     });
 }
