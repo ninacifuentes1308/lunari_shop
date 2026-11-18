@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de administrador</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="body_admin">
+    <div id="login">
+        <h1 class="h1_admin">Lunari - Acceso de administrador</h1>
+        <input class="admin" id="user" placeholder="usuario">
+        <input class="admin" id="pass" type="password" placeholder="Contraseña">
+        <button class="boton_admin" onclick="entrar()">Entrar</button>
+        <p id="error"></p>
+    </div>
+    <div id="panel" style="display:none">
+        <button class="boton_admin" onclick="salir()" style="float: right">Cerrar Sesión</button>
     <h1 class="h1_admin">Lunari - Panel de Administrador</h1>
     <h2>Agregar Producto</h2>
     <input class="admin" id="nombre" placeholder="Nombre ej: Anillo con dije de Luna">
@@ -21,6 +30,26 @@
     <h2>Pedidos LUNARI-XXXX</h2>
     <div id="pedidos"></div>
     <script>
+        function entrar() {
+            const u = document.getElementById('user').value;
+            const p = document.getElementById('pass').value;
+            if (u === 'admin' && p === 'lunari2026'){
+                localStorage.setItem('lunari_admin','si');
+                mostrarpanel();
+            } else {
+                document.getElementById('error').textContent='Usuario o clave incorrecta';
+            }
+        }
+        function mostrarpanel(){
+            document.getElementById('login').style.display='none';
+            document.getElementById('panel').style.display='block';
+            cargar();
+        }
+        function salir(){
+            localStorage.removeItem('lunari_admin');
+            location.reload();
+        }
+
         const API = 'http://localhost:3000/api';
         async function cargar() {
             const res=await fetch(API+'/productos');
@@ -61,7 +90,12 @@
         await fetch(API+'/productos/'+id,{method:'DELETE'});
         cargar();
     }
-    cargar();
+    window.addEventListener('DOMContentLoaded',()=>{
+            if(localStorage.getItem('lunari_admin')==='si'){
+            mostrarpanel();
+        }
+        });
     </script>
+    </div>
 </body>
 </html>

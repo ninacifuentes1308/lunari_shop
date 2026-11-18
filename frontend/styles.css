@@ -563,6 +563,15 @@ input[type="password"]::-ms-reveal, input[type="password"]::-ms-clear{
     object-fit: cover;
     border-radius: 10px;
 }
+.admin_acceso{
+    text-align: center;
+    margin-top: 15px;
+}
+.admin_acceso_ancla{
+    color: #fffffff8;
+    font-size: 14px;
+    text-decoration: none;
+}
 @keyframes flotar {
     0% {
         transform: translateY(0);
