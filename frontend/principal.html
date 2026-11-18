@@ -217,10 +217,10 @@
                     const imagen=p.imagen || p.img || '';
                     const categoria=p.categoria || '';
 
-                    if (document.querySelector(`[data-id="${p.id}"]`)) return;
+                    if (document.querySelector(`[data-id="${p._id}"]`)) return;
                     const div = document.createElement('div');
                     div.className='producto';
-                    div.setAttribute('data-id',p.id);
+                    div.setAttribute('data-id',p._id);
                     div.setAttribute('data-categoria',categoria);
                     div.setAttribute('data-nombre', nombre);
                     div.setAttribute('data-img', imagen);
