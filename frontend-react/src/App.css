@@ -263,6 +263,76 @@ h1, h2, h3 {
 .precio_carrito{
   font-size: 16px;
 }
+.form_registro_inicio{
+  max-width: 400px;
+  margin: 30px auto;
+  background: #FFFFFF;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.form_registro_inicio .formulario{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+}
+.form_registro_inicio .form_dato{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+.form_registro_inicio input{
+  padding: 10px;
+  border: 1px solid #DDDDDD;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.password_wrapper{
+  position: relative;
+}
+.password_wrapper input{
+  padding-right: 75px;
+}
+.contraseña_privada{
+  position: absolute;
+  right: 1px;
+  top: 30px;
+  border: none;
+  background: #F8E1EC;
+  padding: 9px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.btn_principal{
+  background: #f1aadc;
+  color: #110000;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.btn_principal:hover{
+  background: #d97ba0;
+}
+/*Quitar el ojito que viene por defecto en el navegador*/
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear{
+  display: none;
+}
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-textfield-decoration-container {
+  display: none;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
   /* responsive */
 @media (max-width: 600px) {
   .productos, .grid, .catalogo {

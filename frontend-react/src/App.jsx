@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import "./App.css";
 import Carrito from "./carrito.jsx";
+import Login from "./login.jsx";
 function App(){
   const [abierto, setAbierto] = useState(false);
   const [productos, setProductos] = useState([]);
@@ -10,6 +11,7 @@ function App(){
   const [input, setInput] = useState("");
   const [carrito, setCarrito] = useState([]);
   const [vista, setVista]=useState("tienda");
+  const [nombreUsuario, setNombreUsuario]=useState(localStorage.getItem("nombrelunari")||"");
   //Para jalar todos los productos desde el backend
   useEffect(()=>{
     fetch("http://localhost:3000/api/productos")
@@ -73,8 +75,19 @@ function App(){
       <div className="nav_paginas">
         <button onClick={()=> setVista("tienda")}> 🛍️ Tienda</button>
         <button onClick={()=> setVista("carrito")}>🛒 Ver Carrito</button>
+        {nombreUsuario ?(
+          <>
+          <span>Hola, {nombreUsuario}</span>
+          <button onClick={()=>{localStorage.removeItem("nombrelunari"); setNombreUsuario(""); setVista("tienda");}}>Salir</button>
+          </>
+        ):(
+          <button onClick={()=>setVista("login")}>Iniciar Sesión</button>
+        )}
       </div>
-      {vista==="tienda" && (
+      {vista === "login" &&(
+        <Login onLogin={(nombre)=>{setNombreUsuario(nombre); setVista("tienda");}} onIrRegistro={()=>setVista("tienda")} />
+      )}
+      {vista=== "tienda" && (
         <>
       <p className="subtitulo">Tu tienda - se actualiza sola cuando agregas productos desde el admin</p>
       {productos.length===0 && <p className="aviso">⏳ Cargando productos... ¿Tienes prendido el backend en el puerto 3000?</p>}
