@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import "./App.css";
+import Carrito from "./carrito.jsx";
 function App(){
   const [abierto, setAbierto] = useState(false);
   const [productos, setProductos] = useState([]);
@@ -8,6 +9,7 @@ function App(){
   ]);
   const [input, setInput] = useState("");
   const [carrito, setCarrito] = useState([]);
+  const [vista, setVista]=useState("tienda");
   //Para jalar todos los productos desde el backend
   useEffect(()=>{
     fetch("http://localhost:3000/api/productos")
@@ -25,14 +27,21 @@ function App(){
     const normalizar = (t)=>(t || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
     const textonormal= normalizar(textoUser);
     const textobusqueda = textonormal.replaceAll("maquillaje", "belleza").replaceAll("makeup", "belleza").replaceAll("cosmeticos", "belleza").replaceAll("cosméticos", "belleza");
-    const palabrasuser = textobusqueda.split(" ").filter(p=>p.length>2);
+    const stop=["tienen", "tiene","tienes","hay","quiero", "busco","buscas","dime","cuanto","cuesta","precio","para","con","una","unos","este", "esta","eso","ese","del","los","las","que"];
+    const palabrasuser = textobusqueda.split(" ").filter(p=>p.length>2 && !stop.includes(p));
     const encontrado = productos.filter((p) => {
       const nombre=normalizar(p.nombre);
       const descrip= normalizar(p.descripcion);
       const cat = normalizar(p.categoria);
-      const palabrasprod=(nombre + " " + descrip + " " + cat).split(" ");
-      return palabrasuser.some(pal=>palabrasprod.includes(pal)) ||
-          (p.descripcion && palabrasuser.some(pal=>palabrasprod.includes(pal)));
+      const textoprod=nombre+" "+descrip+" "+cat;
+      const palabrasprod=textoprod.split(" ");
+      const coincidencias = palabrasuser.filter(pal=>textoprod.includes(pal)).length;
+      if(palabrasuser.length<=1) return coincidencias>=1;
+      return coincidencias===palabrasuser.length;
+    }).sort((a,b)=>{
+      const pa=palabrasuser.filter(pal=>(normalizar(a.nombre)+" "+normalizar(a.descripcion)+" "+normalizar(a.categoria)).includes(pal)).length;
+      const pb=palabrasuser.filter(pal=>(normalizar(b.nombre)+" "+normalizar(b.descripcion)+" "+normalizar(b.categoria)).includes(pal)).length;
+      return pb-pa;
     });
     
     if (textoUser.includes("hola")|| textoUser.includes("buenas")||textoUser.includes("hey")){
@@ -61,6 +70,12 @@ function App(){
   return(
     <div className="contenedor">
       <h1> 🌙Lunari Shop</h1>
+      <div className="nav_paginas">
+        <button onClick={()=> setVista("tienda")}> 🛍️ Tienda</button>
+        <button onClick={()=> setVista("carrito")}>🛒 Ver Carrito</button>
+      </div>
+      {vista==="tienda" && (
+        <>
       <p className="subtitulo">Tu tienda - se actualiza sola cuando agregas productos desde el admin</p>
       {productos.length===0 && <p className="aviso">⏳ Cargando productos... ¿Tienes prendido el backend en el puerto 3000?</p>}
       <h2>Productos ({productos.length})</h2>
@@ -77,12 +92,11 @@ function App(){
         </div>
       ))}
       </div>
-      <div className="carrito">
-        <h3>🛒 Carrito:{carrito.length} productos - Total: ${total}</h3>
-        {carrito.length>0 && (
-          <a href={`https://wa.me/593999810503?text=${mensajeWA}`} target="_blank" rel="noreferrer" className="btn_wa">Comprar por WhatsApp</a>
-        )}
-      </div>
+      </>
+      )}
+      {vista === "carrito" && (
+        <Carrito carrito={carrito} setCarrito={setCarrito} onVolver={()=> setVista("tienda")}/>
+      )}
       {!abierto &&(
         <button onClick={()=>setAbierto(true)} className="btn_luna">🌙</button>
       )}

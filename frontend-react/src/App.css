@@ -81,23 +81,24 @@ h1, h2, h3 {
 /* carrito */
 .carrito {
   background: white;
-  border-radius: 20px;
-  padding: 15px;
-  max-width: 350px;
-  margin: 20px auto;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   text-align: center;
 }
 
 .btn_wa {
-  display: inline-block;
+  display: block;
+  text-align: center;
   background: #25D366;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 20px;
+  color: #FFFFFF;
+  padding: 14px;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 /* ia */
@@ -116,7 +117,14 @@ h1, h2, h3 {
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   z-index: 999;
 }
-
+.btn_volver{
+  background: #EEEEEE;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
 .chat {
   position: fixed;
   bottom: 90px;
@@ -197,8 +205,65 @@ h1, h2, h3 {
   border-radius: 20px;
   cursor: pointer;
 }
-
-/* responsive */
+.nav_paginas{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0 25px 0;
+}
+.nav_paginas button{
+  background: #FFFFFF;
+  border: 2px solid #D8B4E2;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.nav_paginas button:hover{
+  background: #D8B4E2;
+  color: #FFFFFF;
+}
+.prod_carrito{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #EEEEEE;
+  padding:12PX 0 ;
+}
+.prod_carrito img{
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.prod_info{
+  flex: 1;
+}
+.btn_control{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+.btn_mas, .btn_menos {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #DDDDDD;
+  background: #FFFFFF;
+  cursor: pointer;
+  font-size: 18px;
+}
+.btn_eliminar{
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.precio_carrito{
+  font-size: 16px;
+}
+  /* responsive */
 @media (max-width: 600px) {
   .productos, .grid, .catalogo {
     grid-template-columns: repeat(2, 1fr) !important;
