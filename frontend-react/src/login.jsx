@@ -44,7 +44,7 @@ export default function Login({ onIrRegistro, onLogin }) {
         </div>
 
         <button type="submit" className="btn_principal">Ingresar</button>
-        <p>¿No tienes una cuenta? <a href="#" onClick={(e) => { e.preventDefault(); onIrRegistro(); }}>Regístrate</a></p>
+        <p>¿No tienes una cuenta? <a className="link_login" href="#" onClick={(e) => { e.preventDefault(); onIrRegistro(); }}>Regístrate</a></p>
       </form>
     </main>
   );

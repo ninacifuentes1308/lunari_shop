@@ -2,6 +2,8 @@ import { useState,useEffect } from "react";
 import "./App.css";
 import Carrito from "./carrito.jsx";
 import Login from "./login.jsx";
+import Index from "./index.jsx";
+import Registro from "./registro.jsx";
 function App(){
   const [abierto, setAbierto] = useState(false);
   const [productos, setProductos] = useState([]);
@@ -10,7 +12,7 @@ function App(){
   ]);
   const [input, setInput] = useState("");
   const [carrito, setCarrito] = useState([]);
-  const [vista, setVista]=useState("tienda");
+  const [vista, setVista]=useState("inicio");
   const [nombreUsuario, setNombreUsuario]=useState(localStorage.getItem("nombrelunari")||"");
   //Para jalar todos los productos desde el backend
   useEffect(()=>{
@@ -65,27 +67,61 @@ function App(){
     setMensajes((m)=>[...m,{de: "IA", texto: respuesta}]);
   };
 
-  const agregar=(p)=> setCarrito([...carrito,p]);
+  const agregar=(p)=> {
+    const nuevo=[...carrito,p];
+    setCarrito(nuevo);
+    if (nombreUsuario){
+      localStorage.setItem(`carrito_${nombreUsuario}`,JSON.stringify(nuevo));
+    }
+  };
   const total=carrito.reduce((s,p)=>s+p.precio,0);
   const mensajeWA=encodeURIComponent(`Hola Lunari! Quiero comprar: ${carrito.map((p)=>p.nombre).join(", ")} - Total $${total}`);
 
   return(
-    <div className="contenedor">
-      <h1> 🌙Lunari Shop</h1>
-      <div className="nav_paginas">
-        <button onClick={()=> setVista("tienda")}> 🛍️ Tienda</button>
-        <button onClick={()=> setVista("carrito")}>🛒 Ver Carrito</button>
-        {nombreUsuario ?(
+    <>
+    <header className="encabezado">
+    <div className="logo_tienda">
+      <img src="/assets/img/lunarishoplogo.png" alt="Lunari Shop Logo" className="logo"/>
+      <h1>Lunari Shop</h1>
+    </div>
+    <nav>
+      <ul className="nav_paginas">
+        <li><button onClick={()=> setVista("inicio")}>🏠 Inicio</button></li>
+        <li><button onClick={()=> setVista("tienda")}> 🛍️ Tienda</button></li>
+        <li><button onClick={()=> setVista("carrito")}>🛒 Ver Carrito</button></li>
+        <li>{nombreUsuario ? (
           <>
           <span>Hola, {nombreUsuario}</span>
-          <button onClick={()=>{localStorage.removeItem("nombrelunari"); setNombreUsuario(""); setVista("tienda");}}>Salir</button>
+          <button onClick={()=>{localStorage.removeItem("nombrelunari"); setNombreUsuario(""); setCarrito([]); setVista("tienda");}}>Salir</button>
           </>
-        ):(
+        ) : (
           <button onClick={()=>setVista("login")}>Iniciar Sesión</button>
-        )}
-      </div>
-      {vista === "login" &&(
-        <Login onLogin={(nombre)=>{setNombreUsuario(nombre); setVista("tienda");}} onIrRegistro={()=>setVista("tienda")} />
+        )}</li>
+      </ul>
+      </nav>
+       </header>
+      
+      {vista==="inicio" &&(
+        <Index
+        nombreUsuario={nombreUsuario}
+        irATienda={()=>setVista("tienda")}
+        irALogin={()=>setVista("login")}
+        onSalir={()=>{localStorage.removeItem("nombrelunari"); setNombreUsuario("");}}
+        irAContacto={()=>{setTimeout(()=>document.getElementById("contacto")?.scrollIntoView({behavior:"smooth"}),100)}}
+        irAAdmin={()=>alert("El admin se abre desde su panel aparte")}
+        />
+      )}
+      {vista === "login" && (
+        <Login onLogin={(nombre)=>{
+          setNombreUsuario(nombre);
+          localStorage.setItem("nombrelunari",nombre);
+          const micarrito=JSON.parse(localStorage.getItem(`carrito_${nombre}`)) || [];
+          setCarrito(micarrito);
+          setVista("tienda"); 
+        }} />
+      )}
+      {vista==="registro" &&(
+        <Registro onIrLogin={()=>setVista("login")} />
       )}
       {vista=== "tienda" && (
         <>
@@ -130,7 +166,7 @@ function App(){
           </div>
         </div>
       )}
-    </div>
+      </>
   );
 }
 export default App;
