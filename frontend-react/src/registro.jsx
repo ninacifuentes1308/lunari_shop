@@ -44,7 +44,7 @@ export default function Registro({onIrLogin}) {
     if (!valido) return;
 
     try {
-      const respuesta = await fetch("http://localhost:3000/api/registro", {
+      const respuesta = await fetch("https://lunari-shop-backend.onrender.com/api/registro", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre, correo: correo.trim(), password, telefono }),

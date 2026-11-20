@@ -13,7 +13,7 @@ function Admin({ onSalir }) {
     nombre: "", precio: "", imagen: "", categoria: "", stock: "", descripcion: ""
   });
 
-  const API = "http://localhost:3000/api";
+  const API = "https://lunari-shop-backend.onrender.com/api";
 
   const cargar = async () => {
     const res = await fetch(API + "/productos");

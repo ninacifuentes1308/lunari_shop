@@ -21,7 +21,7 @@ function App(){
   const [orden, setOrden]=useState("normal");
   //Para jalar todos los productos desde el backend
   useEffect(()=>{
-    fetch("http://localhost:3000/api/productos")
+    fetch("https://lunari-shop-backend.onrender.com/api/productos")
     .then((r)=>r.json())
     .then((data)=>setProductos(data))
     .catch(()=>setProductos([]));
