@@ -1,18 +1,10 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #fff5fa;
-  margin: 0;
-  padding: 0;
-  color: #333;
-}
-
-h1, h2, h3 {
+h1, h3 {
   text-align: center;
   color: #7b2d8e;
 }
 
 /* los productos en cuadricula*/
-.productos, .grid, .catalogo, .lista-productos {
+.productos {
   display: grid;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 20px !important;
@@ -24,7 +16,7 @@ h1, h2, h3 {
 }
 
 /* tarjeta para cada producto */
-.producto, .card, .tarjeta {
+.producto {
   background: white;
   border-radius: 20px;
   overflow: hidden !important;
@@ -39,13 +31,13 @@ h1, h2, h3 {
   align-items: center;
 }
 
-.producto h3, .card h3, .tarjeta h3 {
+.producto h3 {
   font-size: 17px;
   margin: 12px 10px 5px 10px;
   color: #333;
 }
 
-.producto p, .card p, .tarjeta p {
+.producto p {
   font-size: 14px;
   color: #666;
   margin: 5px 12px;
@@ -53,7 +45,7 @@ h1, h2, h3 {
 }
 
 /* todas las fotos */
-.producto_img, .card img, .tarjeta img {
+.producto_img {
   width: 80% !important;
   height: 300px !important;
   object-fit: cover !important;
@@ -63,7 +55,7 @@ h1, h2, h3 {
 }
 
 /* boton para agregar productos */
-.producto button, .card button, .tarjeta button {
+.producto button {
   background: #ff69b4;
   color: white;
   border: none;
@@ -74,7 +66,7 @@ h1, h2, h3 {
   margin-top: 10px;
 }
 
-.producto button:hover, .card button:hover {
+.producto button:hover {
   background: #e7549e;
 }
 
@@ -365,7 +357,7 @@ nav a:hover {
 header {
     background: #FFFFFF;
     display: flex;
-    padding: 20px, 60px;
+    padding: 20px 60px;
 
 }
 .logoytitulo {
@@ -389,7 +381,7 @@ header {
     gap: 5rem;
     background: #B98FC2;
     padding: 4rem;
-    border-radius: 8px solid #EB88DD;
+    border-radius: 8px;
 }   
 #inicio {
     padding: 2rem;
@@ -594,6 +586,138 @@ button.pregunta {
 .link_login:hover{
   color: #a61e66;
 }
+.filtros{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 15px;
+}
+.filtros input, .filtros select{
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ff80e3;
+  background: #FFFFFF;
+  font-size: 14px;
+}
+.filtros input{
+  flex: 1;
+  min-width: 200px;
+}
+.body_admin{
+  background: #ffffff;
+  min-height: 800px;
+  width: 100%;
+  padding: 20px 40px;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+}
+.h1_admin{
+  color: #b83280;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.login_admin, .form_admin{
+  padding: 30px;
+  background: #f1b6de;
+  margin: 0 auto 20px auto;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+input.admin, textarea.admin{
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
+  border-radius: 12px;
+  border: 1px solid #f0b6d3;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+textarea.admin{
+  min-height: 70px;
+}
+.boton_admin{
+  background: #ff88f9;
+  color: #000000;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.boton_admin:hover{
+  background: #ff21f4;
+}
+.card_admin{
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 10px 0;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  flex-wrap: wrap;
+}
+.card_admin img{
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.card_admin button{
+  background: #f0b6d3;
+  color: #6b103f;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.card_admin button:last-child{
+  background: #8f8f8fb9;
+  color: #000000;
+}
+.contacto_form{
+  max-width: 600px;
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.contacto_form p{
+  color: #666666;
+  margin: 10px 0 20px 0;
+  font-size: 14px;
+}
+.form_contacto{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+.form_contacto input, .form_contacto textarea{
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form_contacto textarea{
+  min-height: 100px;
+}
+.form_contacto .btn_principal{
+  font-size: 16px;
+  padding: 14px;
+}
 @keyframes flotar {
     0% {
         transform: translateY(0);
@@ -792,7 +916,7 @@ img { max-width: 100%; height: auto; }
     gap: 12px !important;
     padding: 12px;
   }
-  .producto img, .card img {
+  .producto img {
     height: 160px !important;
   }
 }

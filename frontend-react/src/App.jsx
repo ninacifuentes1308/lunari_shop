@@ -4,6 +4,8 @@ import Carrito from "./carrito.jsx";
 import Login from "./login.jsx";
 import Index from "./index.jsx";
 import Registro from "./registro.jsx";
+import Admin from "./admin.jsx";
+import Contacto from "./contacto.jsx";
 function App(){
   const [abierto, setAbierto] = useState(false);
   const [productos, setProductos] = useState([]);
@@ -14,6 +16,9 @@ function App(){
   const [carrito, setCarrito] = useState([]);
   const [vista, setVista]=useState("inicio");
   const [nombreUsuario, setNombreUsuario]=useState(localStorage.getItem("nombrelunari")||"");
+  const [busqueda, setBusqueda]= useState("");
+  const [categoria, setCategoria]=useState("todas");
+  const [orden, setOrden]=useState("normal");
   //Para jalar todos los productos desde el backend
   useEffect(()=>{
     fetch("http://localhost:3000/api/productos")
@@ -74,6 +79,17 @@ function App(){
       localStorage.setItem(`carrito_${nombreUsuario}`,JSON.stringify(nuevo));
     }
   };
+  const categorias=[...new Set(productos.map((p)=>p.categoria).filter(Boolean))];
+  const productosfiltrados=productos
+    .filter((p)=>{
+      const coincidebusqueda = p.nombre.toLowerCase().includes(busqueda.toLowerCase());
+      const coincidecategoria= categoria==="todas"||p.categoria===categoria;
+      return coincidebusqueda && coincidecategoria;
+    })
+    .sort((a,b)=>{
+      if (orden==="menor-mayor") return a.precio-b.precio;
+      if (orden==="mayor-menor") return b.precio-a.precio;
+    });
   const total=carrito.reduce((s,p)=>s+p.precio,0);
   const mensajeWA=encodeURIComponent(`Hola Lunari! Quiero comprar: ${carrito.map((p)=>p.nombre).join(", ")} - Total $${total}`);
 
@@ -89,6 +105,8 @@ function App(){
         <li><button onClick={()=> setVista("inicio")}>🏠 Inicio</button></li>
         <li><button onClick={()=> setVista("tienda")}> 🛍️ Tienda</button></li>
         <li><button onClick={()=> setVista("carrito")}>🛒 Ver Carrito</button></li>
+        <li><button onClick={()=> setVista("admin")}>👤Administrador</button></li>
+        <li><button onClick={()=>setVista("contacto")}> 📞 Contáctanos</button></li>
         <li>{nombreUsuario ? (
           <>
           <span>Hola, {nombreUsuario}</span>
@@ -100,7 +118,8 @@ function App(){
       </ul>
       </nav>
        </header>
-      
+      {vista === "admin" && <Admin onSalir={()=>setVista("tienda")}/>}
+      {vista === "contacto" && <Contacto/>}
       {vista==="inicio" &&(
         <Index
         nombreUsuario={nombreUsuario}
@@ -118,7 +137,7 @@ function App(){
           const micarrito=JSON.parse(localStorage.getItem(`carrito_${nombre}`)) || [];
           setCarrito(micarrito);
           setVista("tienda"); 
-        }} />
+        }} onIrRegistro={()=> setVista("registro")}/>
       )}
       {vista==="registro" &&(
         <Registro onIrLogin={()=>setVista("login")} />
@@ -127,11 +146,26 @@ function App(){
         <>
       <p className="subtitulo">Tu tienda - se actualiza sola cuando agregas productos desde el admin</p>
       {productos.length===0 && <p className="aviso">⏳ Cargando productos... ¿Tienes prendido el backend en el puerto 3000?</p>}
-      <h2>Productos ({productos.length})</h2>
-      <div className="productos">
-      {productos.map((p)=>(
-        <div key={p._id} className="producto">
-          {p.imagen && <img src={p.imagen} alt={p.nombre} className="producto_img"/>}
+      <div className="filtros">
+        <input value={busqueda} onChange={(e)=> setBusqueda(e.target.value)} placeholder=" 🔍 Buscar por nombre..." />
+        <select value={categoria} onChange={(e)=>setCategoria(e.target.value)}>
+          <option value="todas">Todas las categorias</option>
+          {categorias.map((c)=>(
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+        <select value={orden} onChange={(e)=>setOrden(e.target.value)}>
+          <option value="normal">Sin ordenar</option>
+          <option value="menor-mayor">Precio: menor a mayor</option>
+          <option value="mayor-menor">Precio: mayor a menor</option>
+        </select>
+      </div>
+      <h2>Productos ({productosfiltrados.length})</h2>
+      {productosfiltrados.length===0 && productos.length > 0 && <p className="aviso">No hay productos con ese filtro</p>}
+        <div className="productos">
+          {productosfiltrados.map((p)=>(
+            <div key={p._id} className="producto">
+              {p.imagen && <img src={p.imagen} alt={p.nombre} className="producto_img"/>}
           <div className="producto_info">
             <b>{p.nombre}</b><br />
             <span>${p.precio} {p.categoria ? `- ${p.categoria}`: ""}</span><br />
@@ -142,7 +176,7 @@ function App(){
       ))}
       </div>
       </>
-      )}
+          )}
       {vista === "carrito" && (
         <Carrito carrito={carrito} setCarrito={setCarrito} onVolver={()=> setVista("tienda")}/>
       )}

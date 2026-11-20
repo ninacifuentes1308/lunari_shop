@@ -28,7 +28,41 @@ export default function Carrito({ carrito, setCarrito, onVolver }) {
   const eliminar = (id) => {
     setCarrito(prev => prev.filter(p => p._id !== id));
   };
+  const generarcodigo=()=>{
+    const letras="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789";
+    let codigo="";
+    for (let i = 0; i<6; i++) {
+      codigo += letras[Math.floor(Math.random()*letras.length)];
+    } 
+    return "LUN-" + codigo;
+  };
+  const confirmarpedido=()=>{
+    if (carrito.length===0){
+      alert("Tu carrito está vacío")
+      return
+    }
+    const codigo=generarcodigo();
+    const nuevopedido={
+      codigo: codigo,
+      fecha: new Date().toLocaleString(),
+      nombre: localStorage.getItem("nombrelunari")||"invitado",
+      productos: carrito,
+      total: total,
+    };
+    const pedidosguardados= JSON.parse(localStorage.getItem("pedidos_lunari")||"[]");
+    pedidosguardados.push(nuevopedido);
+    localStorage.setItem("pedidos_lunari", JSON.stringify(pedidosguardados));
 
+    const mensaje=encodeURIComponent(
+      `Hola Lunari, quiero pedir con código ${codigo}:\n`+
+      carrito.map(p=> `- ${p.nombre} x${p.cantidad || 1} = $${(p.precio*(p.cantidad || 1)).toFixed(2)}`).join("\n")+
+      `\nTotal: $${total.toFixed(2)}`
+    );
+    window.open(`https://wa.me/593999810503?text=${mensaje}`,"_blank");
+    alert (`¡Pedido confirmado! \Tu código es: ${codigo}\nGuárdalo para reclamar tu pedido.`)
+    setCarrito([]);
+    localStorage.setItem("carrito_lunari",JSON.stringify([]));
+  };
   const mensajeWA = encodeURIComponent(
     "Hola Lunari, quiero pedir:\n" + carrito.map(p => `- ${p.nombre} x${p.cantidad || 1} = $${(p.precio * (p.cantidad || 1)).toFixed(2)}`).join("\n") + `\nTotal: $${total.toFixed(2)}`
   );
@@ -59,6 +93,7 @@ export default function Carrito({ carrito, setCarrito, onVolver }) {
               </div>
             ))}
           </div>
+          <button className="btn_principal" onClick={confirmarpedido}>Confrmar pedido</button>
           <a href={`https://wa.me/593999810503?text=${mensajeWA}`} target="_blank" rel="noreferrer" className="btn_wa">
             Pedir por WhatsApp
           </a>

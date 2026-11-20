@@ -61,6 +61,11 @@ app.delete('/api/productos/:id', async(req,res)=>{
     await Producto.findByIdAndDelete(req.params.id);
     res.json({ok:true});
 });
+//editar productos desde el admin
+app.put('/api/productos/:id', async (req,res)=>{
+    const actualizado = await Producto.findByIdAndUpdate(req.params.id, req.body, {new:true});
+    res.json(actualizado);
+});
 //pedidos con el codigo LUNARI
 app.post('/api/pedidos', async (req,res)=>{
     try{
